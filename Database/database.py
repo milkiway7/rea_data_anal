@@ -1,11 +1,16 @@
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import sessionmaker
 from config import DATABASE_CONFIG
+from Helpers.logger import get_logger
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 class Database:
     def __init__(self):
         self.engine = create_async_engine(
-            f"mssql+aioodbc://{DATABASE_CONFIG['server']}/{DATABASE_CONFIG['database']}?driver={DATABASE_CONFIG['driver']}&trusted_connection={DATABASE_CONFIG['trusted_connection']}",
+            os.getenv("DB_CONNECTION_STRING"),
             echo=True,
             fast_executemany=True,
             pool_size=10,
@@ -22,4 +27,9 @@ class Database:
         )
 
     def get_session(self):
-        return self.SessionLocal()
+        try:    
+            return self.SessionLocal()
+        except Exception as e:
+            get_logger(self.__class__.__name__).error(f"Error creating session: {e}")
+
+            

@@ -1,5 +1,11 @@
-fastapi
-uvicorn
-pydantic
-pandas
-sqlalchemy
+fastapi == 0.115.12
+uvicorn == 0.34.2
+pydantic == 2.11.4
+pandas == 2.2.3
+SQLAlchemy == 2.0.41
+httpx == 0.28.1
+aioodbc == 0.5.0
+anyio == 4.9.0
+numpy == 2.2.6
+pyodbc == 5.2.0
+typi
