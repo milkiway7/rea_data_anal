@@ -2,14 +2,14 @@ from fastapi import FastAPI, Body
 from typing import List
 from Models.scrapping_data_model import ScrappingDataModel
 from Services.prepare_data import PrepareData
-from contextlib import asynccontextmanager
-from Database.database_init import initialize_database
+from contextlib import asynccontextmanager 
+from Helpers.initialize_db_with_retry import initialize_db_with_retry
 from Helpers.logger import get_logger
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     try:
-        await initialize_database()
+        await initialize_db_with_retry()
         yield
     except Exception as e:
         get_logger().error(f"Database initialisation failed: {e}")
@@ -28,4 +28,6 @@ async def analyze(data: List[ScrappingDataModel] = Body(...)):
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=False)
+    # uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=False)
+
 
