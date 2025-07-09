@@ -1,7 +1,6 @@
-from datetime import datetime
 from sqlalchemy.future import select
 from Database.database import Database
-from Database.TableModel.ScrappingDataModelDb import scrapped_data_table
+from Database.TableModel.ScrappingDataTableModel import scrapped_data_table
 from Helpers.logger import get_logger
 from Database.Mappers.ScrappedDataMapper import ScrappedDataMapper
 

@@ -2,9 +2,6 @@ from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import sessionmaker
 from Helpers.logger import get_logger
 import os
-from dotenv import load_dotenv
-
-load_dotenv()
 
 class Database:
     def __init__(self):

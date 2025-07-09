@@ -1,0 +1,86 @@
+2025-07-09 23:10:33 - AiServiceRepository - INFO - Fetching data for embedding from scrapped_data_table
+2025-07-09 23:10:33 - AiServiceRepository - INFO - Fetching first item from LastEmbeddedItemTableModel
+2025-07-09 23:10:33 - AiServiceRepository - INFO - First item fetched: https://www.otodom.pl/pl/oferta/kawalerka-w-okazyjnej-cenie-idealna-na-start-ID4x21J
+2025-07-09 23:10:33 - AiServiceRepository - INFO - Fetching Id for last embedded Url: https://www.otodom.pl/pl/oferta/kawalerka-w-okazyjnej-cenie-idealna-na-start-ID4x21J
+2025-07-09 23:10:33 - AiServiceRepository - INFO - Last embedded Id found: 10295
+2025-07-09 23:10:53 - AiServiceRepository - INFO - Fetched 100 items for embedding
+2025-07-09 23:11:47 - AiServiceRepository - INFO - Fetching data for embedding from scrapped_data_table
+2025-07-09 23:11:47 - AiServiceRepository - INFO - Fetching first item from LastEmbeddedItemTableModel
+2025-07-09 23:11:47 - AiServiceRepository - INFO - First item fetched: https://www.otodom.pl/pl/oferta/kawalerka-w-okazyjnej-cenie-idealna-na-start-ID4x21J
+2025-07-09 23:11:47 - AiServiceRepository - INFO - Fetching Id for last embedded Url: https://www.otodom.pl/pl/oferta/kawalerka-w-okazyjnej-cenie-idealna-na-start-ID4x21J
+2025-07-09 23:11:48 - AiServiceRepository - INFO - Last embedded Id found: 10295
+2025-07-09 23:11:48 - AiServiceRepository - INFO - Fetched 100 items for embedding
+2025-07-09 23:12:24 - AiServiceRepository - INFO - Fetching data for embedding from scrapped_data_table
+2025-07-09 23:12:24 - AiServiceRepository - INFO - Fetching first item from LastEmbeddedItemTableModel
+2025-07-09 23:12:24 - AiServiceRepository - INFO - First item fetched: https://www.otodom.pl/pl/oferta/kawalerka-w-okazyjnej-cenie-idealna-na-start-ID4x21J
+2025-07-09 23:12:24 - AiServiceRepository - INFO - Fetching Id for last embedded Url: https://www.otodom.pl/pl/oferta/kawalerka-w-okazyjnej-cenie-idealna-na-start-ID4x21J
+2025-07-09 23:12:24 - AiServiceRepository - INFO - Last embedded Id found: 10295
+2025-07-09 23:12:24 - AiServiceRepository - INFO - Fetched 100 items for embedding
+- INFO - [generated in 0.00103s] ()
+2025-07-09 23:10:33 - sqlalchemy.engine.Engine - INFO - SELECT CAST('test max support' AS NVARCHAR(max))
+2025-07-09 23:10:33 - sqlalchemy.engine.Engine - INFO - [generated in 0.00100s] ()
+2025-07-09 23:10:33 - sqlalchemy.engine.Engine - INFO - SELECT 1 FROM fn_listextendedproperty(default, default, default, default, default, default, default)
+2025-07-09 23:10:33 - sqlalchemy.engine.Engine - INFO - [generated in 0.00090s] ()
+2025-07-09 23:10:33 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2025-07-09 23:10:33 - sqlalchemy.engine.Engine - INFO - SELECT TOP 1 [LastEmbeddedItem].[LastEmbeddedUrl] 
+FROM [LastEmbeddedItem] ORDER BY [LastEmbeddedItem].[Id] DESC
+2025-07-09 23:10:33 - sqlalchemy.engine.Engine - INFO - [generated in 0.00259s] ()
+2025-07-09 23:10:33 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+2025-07-09 23:10:33 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2025-07-09 23:10:33 - sqlalchemy.engine.Engine - INFO - SELECT [ScrappedData].[Id] 
+FROM [ScrappedData] 
+WHERE [ScrappedData].[Url] = ?
+2025-07-09 23:10:33 - sqlalchemy.engine.Engine - INFO - [generated in 0.00118s] ('https://www.otodom.pl/pl/oferta/kawalerka-w-okazyjnej-cenie-idealna-na-start-ID4x21J',)
+2025-07-09 23:10:41 - sqlalchemy.engine.Engine - INFO - SELECT TOP 100 [ScrappedData].[Id], [ScrappedData].[CreatedAt], [ScrappedData].[Url], [ScrappedData].[Title], [ScrappedData].[Address], [ScrappedData].[Price], [ScrappedData].[PricePerM2], [ScrappedData].[Description], [ScrappedData].[Area], [ScrappedData].[Rooms], [ScrappedData].[Heating], [ScrappedData].[Floor], [ScrappedData].[Rent], [ScrappedData].[BuildingCondition], [ScrappedData].[Market], [ScrappedData].[AvailableFrom], [ScrappedData].[OfferType], [ScrappedData].[AdditionalInfo] 
+FROM [ScrappedData] 
+WHERE [ScrappedData].[Id] > ? ORDER BY [ScrappedData].[Id]
+2025-07-09 23:10:41 - sqlalchemy.engine.Engine - INFO - [generated in 0.00873s] (10295,)
+2025-07-09 23:11:01 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+2025-07-09 23:11:47 - root - INFO - Fetching data for embedding from database
+2025-07-09 23:11:47 - sqlalchemy.engine.Engine - INFO - SELECT CAST(SERVERPROPERTY('ProductVersion') AS VARCHAR)
+2025-07-09 23:11:47 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2025-07-09 23:11:47 - sqlalchemy.engine.Engine - INFO - SELECT schema_name()
+2025-07-09 23:11:47 - sqlalchemy.engine.Engine - INFO - [generated in 0.00198s] ()
+2025-07-09 23:11:47 - sqlalchemy.engine.Engine - INFO - SELECT CAST('test max support' AS NVARCHAR(max))
+2025-07-09 23:11:47 - sqlalchemy.engine.Engine - INFO - [generated in 0.00105s] ()
+2025-07-09 23:11:47 - sqlalchemy.engine.Engine - INFO - SELECT 1 FROM fn_listextendedproperty(default, default, default, default, default, default, default)
+2025-07-09 23:11:47 - sqlalchemy.engine.Engine - INFO - [generated in 0.00286s] ()
+2025-07-09 23:11:47 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2025-07-09 23:11:47 - sqlalchemy.engine.Engine - INFO - SELECT TOP 1 [LastEmbeddedItem].[LastEmbeddedUrl] 
+FROM [LastEmbeddedItem] ORDER BY [LastEmbeddedItem].[Id] DESC
+2025-07-09 23:11:47 - sqlalchemy.engine.Engine - INFO - [generated in 0.00222s] ()
+2025-07-09 23:11:47 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+2025-07-09 23:11:47 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2025-07-09 23:11:47 - sqlalchemy.engine.Engine - INFO - SELECT [ScrappedData].[Id] 
+FROM [ScrappedData] 
+WHERE [ScrappedData].[Url] = ?
+2025-07-09 23:11:47 - sqlalchemy.engine.Engine - INFO - [generated in 0.00181s] ('https://www.otodom.pl/pl/oferta/kawalerka-w-okazyjnej-cenie-idealna-na-start-ID4x21J',)
+2025-07-09 23:11:48 - sqlalchemy.engine.Engine - INFO - SELECT TOP 100 [ScrappedData].[Id], [ScrappedData].[CreatedAt], [ScrappedData].[Url], [ScrappedData].[Title], [ScrappedData].[Address], [ScrappedData].[Price], [ScrappedData].[PricePerM2], [ScrappedData].[Description], [ScrappedData].[Area], [ScrappedData].[Rooms], [ScrappedData].[Heating], [ScrappedData].[Floor], [ScrappedData].[Rent], [ScrappedData].[BuildingCondition], [ScrappedData].[Market], [ScrappedData].[AvailableFrom], [ScrappedData].[OfferType], [ScrappedData].[AdditionalInfo] 
+FROM [ScrappedData] 
+WHERE [ScrappedData].[Id] > ? ORDER BY [ScrappedData].[Id]
+2025-07-09 23:11:48 - sqlalchemy.engine.Engine - INFO - [generated in 0.00135s] (10295,)
+2025-07-09 23:11:48 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+2025-07-09 23:12:24 - root - INFO - Fetching data for embedding from database
+2025-07-09 23:12:24 - sqlalchemy.engine.Engine - INFO - SELECT CAST(SERVERPROPERTY('ProductVersion') AS VARCHAR)
+2025-07-09 23:12:24 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2025-07-09 23:12:24 - sqlalchemy.engine.Engine - INFO - SELECT schema_name()
+2025-07-09 23:12:24 - sqlalchemy.engine.Engine - INFO - [generated in 0.00188s] ()
+2025-07-09 23:12:24 - sqlalchemy.engine.Engine - INFO - SELECT CAST('test max support' AS NVARCHAR(max))
+2025-07-09 23:12:24 - sqlalchemy.engine.Engine - INFO - [generated in 0.00109s] ()
+2025-07-09 23:12:24 - sqlalchemy.engine.Engine - INFO - SELECT 1 FROM fn_listextendedproperty(default, default, default, default, default, default, default)
+2025-07-09 23:12:24 - sqlalchemy.engine.Engine - INFO - [generated in 0.00115s] ()
+2025-07-09 23:12:24 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2025-07-09 23:12:24 - sqlalchemy.engine.Engine - INFO - SELECT TOP 1 [LastEmbeddedItem].[LastEmbeddedUrl] 
+FROM [LastEmbeddedItem] ORDER BY [LastEmbeddedItem].[Id] DESC
+2025-07-09 23:12:24 - sqlalchemy.engine.Engine - INFO - [generated in 0.00126s] ()
+2025-07-09 23:12:24 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+2025-07-09 23:12:24 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2025-07-09 23:12:24 - sqlalchemy.engine.Engine - INFO - SELECT [ScrappedData].[Id] 
+FROM [ScrappedData] 
+WHERE [ScrappedData].[Url] = ?
+2025-07-09 23:12:24 - sqlalchemy.engine.Engine - INFO - [generated in 0.00167s] ('https://www.otodom.pl/pl/oferta/kawalerka-w-okazyjnej-cenie-idealna-na-start-ID4x21J',)
+2025-07-09 23:12:24 - sqlalchemy.engine.Engine - INFO - SELECT TOP 100 [ScrappedData].[Id], [ScrappedData].[CreatedAt], [ScrappedData].[Url], [ScrappedData].[Title], [ScrappedData].[Address], [ScrappedData].[Price], [ScrappedData].[PricePerM2], [ScrappedData].[Description], [ScrappedData].[Area], [ScrappedData].[Rooms], [ScrappedData].[Heating], [ScrappedData].[Floor], [ScrappedData].[Rent], [ScrappedData].[BuildingCondition], [ScrappedData].[Market], [ScrappedData].[AvailableFrom], [ScrappedData].[OfferType], [ScrappedData].[AdditionalInfo] 
+FROM [ScrappedData] 
+WHERE [ScrappedData].[Id] > ? ORDER BY [ScrappedData].[Id]
+2025-07-09 23:12:24 - sqlalchemy.engine.Engine - INFO - [generated in 0.00145s] (10295,)
+2025-07-09 23:12:24 - sqlalchemy.engine.Engine - INFO - ROLLBACK

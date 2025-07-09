@@ -1,4 +1,4 @@
-from Database.TableModel.ScrappingDataModelDb import scrapped_data_table
+from Database.TableModel.ScrappingDataTableModel import scrapped_data_table
 from datetime import datetime
 
 class ScrappedDataMapper:

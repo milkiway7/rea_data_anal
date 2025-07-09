@@ -1,5 +1,6 @@
 from Database.database import Database
-from Database.TableModel.ScrappingDataModelDb import Base
+from Database.TableModel.ScrappingDataTableModel import Base
+from Database.TableModel.LastEmbeddedItemTableModel import Base 
 from Helpers.logger import get_logger
 
 async def initialize_database():
