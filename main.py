@@ -30,6 +30,18 @@ async def analyze(data: List[ScrappingDataModel] = Body(...)):
         get_logger().error(f"Error during data analysis: {e}")
         return {"msg": "Error", "error": str(e)}
 
+@app.patch("/remove_duplicates")
+async def remove_duplicates():
+    try:
+        get_logger().info("Removing duplicates from scrapped data")
+        ai_service_repo = AiServiceRepository()
+        await ai_service_repo.remove_duplicates()  # This method will handle the removal of duplicates
+        return {"msg": "Duplicates removed successfully"}
+    except Exception as e:
+        get_logger().error(f"Error removing duplicates: {e}")
+        return {"msg": "Error", "error": str(e)}
+
+
 @app.get("/get_data_for_embedding")
 async def get_data_for_embedding():
     try:
@@ -37,6 +49,7 @@ async def get_data_for_embedding():
         ai_service_repo = AiServiceRepository()
         items = await ai_service_repo.get_data_for_embedding()
         return {"items": items}
+    
     except Exception as e:
         get_logger().error(f"Error fetching data for embedding: {e}")
         return {"msg": "Error", "error": str(e)}

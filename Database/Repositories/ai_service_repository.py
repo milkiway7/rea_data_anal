@@ -3,13 +3,34 @@ from sqlalchemy.future import select
 from Database.TableModel.ScrappingDataTableModel import scrapped_data_table
 from Database.TableModel.LastEmbeddedItemTableModel import LastEmbeddedItemTableModel
 from Helpers.logger import get_logger
-
+from sqlalchemy import text
 
 class AiServiceRepository:
     def __init__(self):
         self.database = Database()
         self.logger = get_logger(self.__class__.__name__)
     
+    async def remove_duplicates(self):
+        try:
+            async with self.database.get_session() as session:
+                self.logger.info("Removing duplicates from scrapped_data_table")
+                delete_duplicates_query = text("""
+                    WITH DuplicateUrls AS (
+                        SELECT 
+                            [Id],
+                            [Url],
+                            ROW_NUMBER() OVER (PARTITION BY [Url] ORDER BY [Id] DESC) AS rn
+                        FROM ScrappedData
+                    )
+                    DELETE FROM ScrappedData
+                    WHERE [Id] IN (SELECT [Id] FROM DuplicateUrls WHERE rn > 1)""")
+                await session.execute(delete_duplicates_query)
+                await session.commit()
+                self.logger.info("Duplicates removed successfully")
+        except Exception as e:
+            self.logger.error(f"Error removing duplicates: {e}")
+            raise
+
     async def get_first_item(self): 
         async with self.database.get_session() as session:
             try:
@@ -40,16 +61,35 @@ class AiServiceRepository:
                         self.logger.info(f"Last embedded Id found: {last_item_id}")
                     else:
                           self.logger.info("No last embedded URL found")
-                    # Get the next 100 items after the last embedded item
+                    # Get the next 100 items after the last embedded item to LastEmbeddedItemTableModel table
                     query = select(scrapped_data_table).order_by(scrapped_data_table.Id).limit(100)
                     if last_item_id:
                          query = query.where(scrapped_data_table.Id > last_item_id)
                     result = await session.execute(query)
                     items = result.scalars().all()
+                    
                     self.logger.info(f"Fetched {len(items)} items for embedding")
+                    # add last embedded item URL to 
+                    url_to_save = items[-1].Url if items else None
+                    if url_to_save:
+                        self.logger.info(f"Saving last embedded item URL: {url_to_save}")
+                        await self.save_last_embedded_item_url(url_to_save)
                     return items
             except Exception as e:
                 self.logger.error(f"Error fetching data for embedding: {e}")
                 raise
             
-                    
+    async def save_last_embedded_item_url(self, url: str):
+        if not url:
+            self.logger.warning("Tried to save empty URL, skipping.")
+            return
+        try:
+            async with self.database.get_session() as session:
+                self.logger.info(f"Saving last embedded item URL: {url}")
+                last_embedded_item = LastEmbeddedItemTableModel(LastEmbeddedUrl=url)
+                session.add(last_embedded_item)
+                await session.commit()
+                self.logger.info("Last embedded item saved successfully")
+        except Exception as e:
+            self.logger.error(f"Error saving last embedded item: {e}")
+            raise
