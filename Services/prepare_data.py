@@ -23,11 +23,11 @@ class PrepareData:
             records_for_db = self.df.to_dict(orient='records')
             records_for_db = self.convert_to_float(records_for_db)
             records_for_db = self.nan_to_none(records_for_db)
-            await self.repository.save_data(records_for_db)
+            saved_and_duplicates_items_db = await self.repository.save_data(records_for_db)
+            return saved_and_duplicates_items_db
         except Exception as e:
             self.logger.error(f"Error in prepare_data: {e}")
             
-    
     def to_dataframe(self):
         try:
             data_dicts = [item.dict() for item in self.data]
@@ -44,14 +44,12 @@ class PrepareData:
             self.df["price_per_m2"] = self.df["price_per_m2"].str.replace("zł/m²","", regex=False).str.replace(" ", "", regex=False)
             self.df["area"] =  self.df["area"].str.extract(r"(\d+(?:\.\d+)?)").astype(str)[0]
             self.df["rent"] = self.df["rent"].str.replace(" ","").str.extract(r"(\d+)").astype(str)[0]
-
             self.df = self.df.replace({r"\n": " ", r"\t": " ", r"\xa0": " "}, regex=True)
             self.df = self.df.replace(r"\s{2,}", " ", regex=True)
             self.df = self.df.replace("brak informacji", None)
         except Exception as e:
             self.logger.error(f"Error cleaning data: {e}")
             
-
     def convert_to_float(self,records_for_db):
         try:
             for record in records_for_db:
@@ -63,8 +61,7 @@ class PrepareData:
                             record[field] = None
             return records_for_db
         except Exception as e:
-            self.logger.error(f"Error converting columns to float: {e}")
-            
+            self.logger.error(f"Error converting columns to float: {e}")    
     
     def nan_to_none(self, records):
         try:
